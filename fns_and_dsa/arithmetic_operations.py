@@ -5,12 +5,12 @@ def perform_operation(num1, num2, operation):
     Perform basic arithmetic operations based on the operation parameter.
 
     Parameters:
-        num1: First number
-        num2: Second number
-        operation: 'add', 'subtract', 'multiply', or 'divide'
+        num1: float, first number
+        num2: float, second number
+        operation: str, one of 'add', 'subtract', 'multiply', or 'divide'
 
     Returns:
-        Result of the operation or a string indicating an error.
+        float or str: Result of the operation or a string indicating an error
     """
     if operation == 'add':
         return num1 + num2
