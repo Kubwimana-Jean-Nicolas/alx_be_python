@@ -15,33 +15,42 @@ class BankAccount:
         return False
 
     def display_balance(self):
-        # This exact format passes ALX checker
         print(f"Current Balance: ${self.__account_balance}")
 
 
-# Create a single account instance (ALX expects the instance outside main)
-account = BankAccount(100)
-
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: python bank_account.py <command>:<amount>")
-        print("Commands: deposit, withdraw, display")
-        sys.exit(1)
+    account = BankAccount(100)  # Initial balance
 
-    parts = sys.argv[1].split(':')
-    command = parts[0]
-    amount = float(parts[1]) if len(parts) > 1 else None
+    if len(sys.argv) != 2:
+        print("Invalid command.")
+        return
 
-    if command == "deposit" and amount is not None:
-        account.deposit(amount)
-        print(f"Deposited: ${amount}")
-    elif command == "withdraw" and amount is not None:
-        if account.withdraw(amount):
-            print(f'Withdrew: ${amount}')
-        else:
-            print("Insufficient funds.")
+    command = sys.argv[1]
+
+    # Deposit
+    if command.startswith("deposit:"):
+        try:
+            amount = float(command.split(":")[1])
+            account.deposit(amount)
+            print(f"Deposited: ${amount}")
+        except:
+            print("Invalid command.")
+
+    # Withdraw
+    elif command.startswith("withdraw:"):
+        try:
+            amount = float(command.split(":")[1])
+            if account.withdraw(amount):
+                print(f'Withdrew: ${amount}')
+            else:
+                print("Insufficient funds.")
+        except:
+            print("Invalid command.")
+
+    # Display
     elif command == "display":
         account.display_balance()
+
     else:
         print("Invalid command.")
 
