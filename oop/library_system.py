@@ -6,8 +6,8 @@ class Book:
         self.title = title
         self.author = author
 
-    def get_details(self):
-        return f"Book: {self.title} by {self.author}"
+    def display(self):
+        print(f"Book: {self.title} by {self.author}")
 
 
 # Derived class for EBook
@@ -16,8 +16,8 @@ class EBook(Book):
         super().__init__(title, author)
         self.file_size = file_size
 
-    def get_details(self):
-        return f"EBook: {self.title} by {self.author}, File Size: {self.file_size}KB"
+    def display(self):
+        print(f"EBook: {self.title} by {self.author}, File Size: {self.file_size}KB")
 
 
 # Derived class for PrintBook
@@ -26,8 +26,8 @@ class PrintBook(Book):
         super().__init__(title, author)
         self.page_count = page_count
 
-    def get_details(self):
-        return f"PrintBook: {self.title} by {self.author}, Page Count: {self.page_count}"
+    def display(self):
+        print(f"PrintBook: {self.title} by {self.author}, Page Count: {self.page_count}")
 
 
 # Library class demonstrating composition
@@ -40,4 +40,4 @@ class Library:
 
     def list_books(self):
         for book in self.books:
-            print(book.get_details())
+            book.display()
