@@ -36,7 +36,9 @@ class Library:
         self.books = []
 
     def add_book(self, book):
-        self.books.append(book)
+        # Ensure only Book, EBook, or PrintBook instances are added
+        if isinstance(book, Book):
+            self.books.append(book)
 
     def list_books(self):
         for book in self.books:
